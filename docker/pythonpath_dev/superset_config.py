@@ -148,11 +148,13 @@ CORS_OPTIONS = {
 
 
 
-def make_session_permanent():
-    session.permanent = True
-# Set up max age of session to 24 hours
-PERMANENT_SESSION_LIFETIME = 1800
+# =============================================================================
+# SESSION TIMEOUT CONFIGURATION
+# =============================================================================
+PERMANENT_SESSION_LIFETIME = timedelta(hours=1)
 
+def FLASK_APP_MUTATOR(app: Flask) -> None:
+    app.permanent_session_lifetime = PERMANENT_SESSION_LIFETIME
 
 #
 # Optionally import superset_config_docker.py (which will have been included on

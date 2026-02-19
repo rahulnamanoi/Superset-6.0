@@ -57,6 +57,8 @@ services:
         required: true
       - path: docker/.env-local # optional override
         required: false
+    environment:
+      SUPERSET_CONFIG_PATH: /app/docker/pythonpath_dev/superset_config.py
     image: *superset-image
     container_name: superset_app
     command: ["/app/docker/docker-bootstrap.sh", "app-gunicorn"]
@@ -78,6 +80,8 @@ services:
         required: true
       - path: docker/.env-local # optional override
         required: false
+    environment:
+      SUPERSET_CONFIG_PATH: /app/docker/pythonpath_dev/superset_config.py
     depends_on:
       db:
         condition: service_started
@@ -97,6 +101,8 @@ services:
         required: true
       - path: docker/.env-local # optional override
         required: false
+    environment:
+      SUPERSET_CONFIG_PATH: /app/docker/pythonpath_dev/superset_config.py
     restart: unless-stopped
     depends_on:
       superset-init:
@@ -119,6 +125,8 @@ services:
         required: true
       - path: docker/.env-local # optional override
         required: false
+    environment:
+      SUPERSET_CONFIG_PATH: /app/docker/pythonpath_dev/superset_config.py
     restart: unless-stopped
     depends_on:
       superset-init:
