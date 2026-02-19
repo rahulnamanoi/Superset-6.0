@@ -151,10 +151,7 @@ CORS_OPTIONS = {
 def make_session_permanent():
     session.permanent = True
 # Set up max age of session to 24 hours
-PERMANENT_SESSION_LIFETIME = timedelta(hours=24)
-def FLASK_APP_MUTATOR(app: Flask) -> None:
-    app.before_request_funcs.setdefault(None, []).append(make_session_permanent)
-
+PERMANENT_SESSION_LIFETIME = 1800
 
 
 #
