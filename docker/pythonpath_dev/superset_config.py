@@ -148,6 +148,16 @@ CORS_OPTIONS = {
 
 
 
+
+APP_NAME = "Fulfilor"
+APP_ICON = "/static/assets/images/fulfillor_logo.png"
+APP_ICON_WIDTH = 200
+LOGO_TARGET_PATH = '/'
+LOGO_TOOLTIP = "Fulfillor"
+FAVICONS = [{"href": "/static/assets/images/favicon.png"}]
+
+
+
 # =============================================================================
 # SESSION TIMEOUT CONFIGURATION
 # =============================================================================
