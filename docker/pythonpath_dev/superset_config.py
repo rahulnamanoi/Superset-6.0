@@ -23,8 +23,10 @@
 import logging
 import os
 import sys
+from datetime import timedelta
 
 from celery.schedules import crontab
+from flask import Flask, session
 from flask_caching.backends.filesystemcache import FileSystemCache
 
 logger = logging.getLogger()
@@ -74,10 +76,6 @@ DATA_CACHE_CONFIG = CACHE_CONFIG
 THUMBNAIL_CACHE_CONFIG = CACHE_CONFIG
 
 
-HTTP_HEADERS = {
-    'X-Frame-Options': 'ALLOWALL'
-}
-
 class CeleryConfig:
     broker_url = f"redis://{REDIS_HOST}:{REDIS_PORT}/{REDIS_CELERY_DB}"
     imports = (
@@ -103,7 +101,6 @@ class CeleryConfig:
 
 CELERY_CONFIG = CeleryConfig
 
-FEATURE_FLAGS = {"ALERT_REPORTS": True}
 ALERT_REPORTS_NOTIFICATION_DRY_RUN = True
 WEBDRIVER_BASEURL = f"http://superset_app{os.environ.get('SUPERSET_APP_ROOT', '/')}/"  # When using docker compose baseurl should be http://superset_nginx{ENV{BASEPATH}}/  # noqa: E501
 # The base URL for the email report hyperlinks.
@@ -148,6 +145,15 @@ CORS_OPTIONS = {
     'resources': ['*'],
     'origins': ['http://localhost:8088', 'http://localhost:8080','http://localhost:8888', 'http://localhost:3000']
 }
+
+
+
+def make_session_permanent():
+    session.permanent = True
+# Set up max age of session to 24 hours
+PERMANENT_SESSION_LIFETIME = timedelta(hours=24)
+def FLASK_APP_MUTATOR(app: Flask) -> None:
+    app.before_request_funcs.setdefault(None, []).append(make_session_permanent)
 
 
 
