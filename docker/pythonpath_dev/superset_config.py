@@ -157,6 +157,24 @@ LOGO_TOOLTIP = "Fulfillor"
 FAVICONS = [{"href": "/static/assets/images/favicon.png"}]
 
 
+ENVIRONMENT_TAG_CONFIG = {
+    "variable": "SUPERSET_ENV",
+    "values": {
+        "debug": {
+            "color": "error",
+            "text": "flask-debug",
+        },
+        "development": {
+            "color": "success",
+            "text": "QA",
+        },
+        "production": {
+            "color": "",
+            "text": "",
+        },
+    },
+}
+
 
 # =============================================================================
 # SESSION TIMEOUT CONFIGURATION
