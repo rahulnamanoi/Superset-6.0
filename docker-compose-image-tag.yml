@@ -31,6 +31,8 @@ x-superset-volumes:
   - superset_home:/app/superset_home
   - ./docker/static/images/fulfillor_logo.png:/app/superset/static/assets/images/superset-logo-horiz.png
   - ./docker/static/images/favicon.png:/app/superset/static/assets/images/favicon.png
+  - ./docker/static/images/loading.gif:/app/superset/static/assets/images/loading.gif
+  - ./docker/static/images/loading.cff8a5da.gif:/app/superset/static/assets/loading.cff8a5da.gif
 services:
   redis:
     image: redis:7
